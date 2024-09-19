@@ -6,7 +6,7 @@ pipeline {
         stage("init") {  // this stage prepare/load the groovy functions in script.groovy file here
             steps {
                 script {
-                    gv = load "script.groovy"
+                    gv = load "Basics/script.groovy"
                 }
             }
         }
