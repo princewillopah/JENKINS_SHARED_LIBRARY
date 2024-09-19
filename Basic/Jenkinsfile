@@ -10,11 +10,17 @@ pipeline {
                 }
             }
         }
+        stage('Checkout Code') {
+            steps {
+                 echo "cloning repo to jenkins"
+                 git 'https://github.com/princewillopah/JENKINS_SHARED_LIBRARY.git'
+            }
+        }
         stage("build jar") {
             steps {
                 script {
                     echo "building jar"
-                    //gv.buildJar()
+                    gv.buildJar()
                 }
             }
         }
@@ -22,7 +28,7 @@ pipeline {
             steps {
                 script {
                     echo "building image"
-                    //gv.buildImage()
+                    gv.buildImage()
                 }
             }
         }
@@ -30,7 +36,7 @@ pipeline {
             steps {
                 script {
                     echo "deploying"
-                    //gv.deployApp()
+                    gv.deployApp()
                 }
             }
         }
