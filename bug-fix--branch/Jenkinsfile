@@ -20,7 +20,7 @@ pipeline {
                  git 'https://github.com/princewillopah/JENKINS_SHARED_LIBRARY.git'
             }
         }
-        stage("build jar") {
+        stage("build Jar File") {
             steps {
                 dir('bug-fix--branch'){
                     script {
