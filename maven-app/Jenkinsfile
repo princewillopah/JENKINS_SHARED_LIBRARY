@@ -9,7 +9,7 @@ pipeline {
         stage("init") {  // this stage prepare/load the groovy functions in script.groovy file here
             steps {
                 script {
-                    gv = load "java-maven-app/script.groovy"
+                    gv = load "maven-app/script.groovy"
                 }
             }
         }
