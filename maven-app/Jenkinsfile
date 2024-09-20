@@ -40,7 +40,7 @@ pipeline {
                             // Here we use the USERNAME and PASSWORD variables in a git command
                       sh """
                          docker build -t princewillopah/nana-demo:version-1 .
-                         echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
+                         echo ${MY_DOCKER_PASSWORD} | docker login -u ${MY_DOCKER__USERNAME} --password-stdin
                          docker push princewillopah/nana-demo:version-1
                        """
                     } 
