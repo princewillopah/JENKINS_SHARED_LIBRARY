@@ -9,7 +9,7 @@ pipeline {
         stage("init") {  // this stage prepare/load the groovy functions in script.groovy file here
             steps {
                 script {
-                    gv = load "Multi-branch-Dir/script.groovy"
+                    gv = load "maven-app/script.groovy"
                 }
             }
         }
@@ -20,9 +20,9 @@ pipeline {
                  git 'https://github.com/princewillopah/JENKINS_SHARED_LIBRARY.git'
             }
         }
-        stage("build Jar File") {
+        stage("build jar") {
             steps {
-                dir('Multi-branch'){
+                dir('maven-app'){
                     script {
 
                         echo "building jar file"
@@ -35,7 +35,7 @@ pipeline {
 
         stage("build image") {
             steps {
-            dir('Multi-branch'){ 
+            dir('maven-app'){ 
                 script {
                     withCredentials([usernamePassword(credentialsId: 'my-credentials', usernameVariable: 'MY_DOCKER__USERNAME', passwordVariable: 'MY_DOCKER_PASSWORD')]) {
                             // Here we use the USERNAME and PASSWORD variables in a git command
