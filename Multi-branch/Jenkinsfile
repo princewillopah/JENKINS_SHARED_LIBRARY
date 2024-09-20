@@ -9,7 +9,7 @@ pipeline {
         stage("init") {  // this stage prepare/load the groovy functions in script.groovy file here
             steps {
                 script {
-                    gv = load "bug-fix--branch/script.groovy"
+                    gv = load "Multi-branch-Dir/script.groovy"
                 }
             }
         }
@@ -22,7 +22,7 @@ pipeline {
         }
         stage("build Jar File") {
             steps {
-                dir('bug-fix--branch'){
+                dir('Multi-branch'){
                     script {
 
                         echo "building jar file"
@@ -35,7 +35,7 @@ pipeline {
 
         stage("build image") {
             steps {
-            dir('bug-fix--branch'){ 
+            dir('Multi-branch'){ 
                 script {
                     withCredentials([usernamePassword(credentialsId: 'my-credentials', usernameVariable: 'MY_DOCKER__USERNAME', passwordVariable: 'MY_DOCKER_PASSWORD')]) {
                             // Here we use the USERNAME and PASSWORD variables in a git command
