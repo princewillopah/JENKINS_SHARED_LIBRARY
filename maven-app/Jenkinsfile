@@ -22,17 +22,20 @@ pipeline {
         }
         stage("build jar") {
             steps {
-                script {
-                    echo "building jar file"
-                      sh 'mvn package'  
+                dir('maven-app'){
+                    script {
+
+                        echo "building jar file"
+                        sh 'mvn package'  
+                    }            
                 }
+
             }
         }
 
         stage("build image") {
             steps {
                 script {
-                    sh 'mvn package'  
                     withCredentials([usernamePassword(credentialsId: 'my-credentials', usernameVariable: 'MY_DOCKER__USERNAME', passwordVariable: 'MY_DOCKER_PASSWORD')]) {
                             // Here we use the USERNAME and PASSWORD variables in a git command
                       sh """
