@@ -9,7 +9,7 @@ pipeline {
         stage("init") {  // this stage prepare/load the groovy functions in script.groovy file here
             steps {
                 script {
-                    gv = load "maven-app/script.groovy"
+                    gv = load "script.groovy"
                 }
             }
         }
@@ -22,7 +22,6 @@ pipeline {
         }
         stage("build jar") {
             steps {
-                dir('maven-app'){
                     script {
 
                         echo "building jar file"
@@ -30,12 +29,10 @@ pipeline {
                     }            
                 }
 
-            }
         }
 
         stage("build image") {
             steps {
-            dir('maven-app'){ 
                 script {
                     withCredentials([usernamePassword(credentialsId: 'my-credentials', usernameVariable: 'MY_DOCKER__USERNAME', passwordVariable: 'MY_DOCKER_PASSWORD')]) {
                             // Here we use the USERNAME and PASSWORD variables in a git command
@@ -49,7 +46,7 @@ pipeline {
                      sh 'docker push princewillopah/nana-demo:version-1'  
                     } 
                 }
-            }}
+            }
         }
         stage("deploy") {
             steps {
