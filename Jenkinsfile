@@ -32,6 +32,11 @@ pipeline {
         }
 
         stage("build image") {
+            when{
+                expression {
+                    BRANCH_NAME =="master"
+                }
+            }
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'my-credentials', usernameVariable: 'MY_DOCKER__USERNAME', passwordVariable: 'MY_DOCKER_PASSWORD')]) {
@@ -49,6 +54,11 @@ pipeline {
             }
         }
         stage("deploy") {
+            when{
+                expression {
+                    BRANCH_NAME =="master"
+                }
+            }
             steps {
                 script {
                     echo "deploying"
